@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- ================== SEO & METADATA OPTIMIZATIONS ================== -->
+    
+    <!-- 1. Optimized Title: More descriptive and keyword-rich. -->
+    <title>Bulk Image Text Adder - Free Online Tool | Personalize in Batch</title>
+    
+    <!-- 2. Meta Description: The snippet shown in Google search results. Make it compelling. -->
+    <meta name="description" content="Easily add custom text to hundreds of images at once. Upload a base image, add data from Excel or manually, and download a ZIP file. Perfect for certificates, invitations, and personalized marketing. Free and online.">
+    
+    <!-- 3. Meta Keywords: Less important for Google, but still used by some engines. -->
+    <meta name="keywords" content="bulk image editor, batch image processing, add text to image, image personalization, certificate generator, custom image generator, add name to photo, excel to image, free tool">
+    
+    <!-- 4. Canonical URL: Tells search engines the preferred URL for this page. -->
+    <link rel="canonical" href="https://your-website.com/image-customization-tool" /> <!-- Replace with your actual URL -->
+    
+    <!-- 5. Open Graph / Facebook / LinkedIn Meta Tags -->
+    <meta property="og:title" content="Bulk Image Text Adder - Free Online Tool">
+    <meta property="og:description" content="Add text to multiple images at once from a list or Excel file. Free, fast, and easy.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-website.com/image-customization-tool"> <!-- Replace with your actual URL -->
+    <meta property="og:image" content="https://your-website.com/assets/social-preview.png"> <!-- Create and link a preview image -->
+    
+    <!-- 6. Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bulk Image Text Adder - Free Online Tool">
+    <meta name="twitter:description" content="Add text to multiple images at once from a list or Excel file. Free, fast, and easy.">
+    <meta name="twitter:image" content="https://your-website.com/assets/social-preview.png"> <!-- Use the same preview image -->
+
+    <!-- 7. Structured Data (Schema.org) for WebApplication: Very important for tools. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Bulk Image Customization Tool",
+      "description": "A free online tool to add personalized text to images in bulk, using manual input or an Excel file. Users can customize font, size, and color, and download all generated images as a ZIP file.",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "Any (Web-based)",
+      "browserRequirements": "Requires JavaScript",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "url": "https://your-website.com/image-customization-tool"
+    }
+    </script>
+    
+    <!-- ================== END SEO OPTIMIZATIONS ================== -->
+
+    <!-- External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div class="container">
+    <header>
+        <h1>Bulk Image Text Adder</h1>
+        <p>A free tool to personalize hundreds of images in moments.</p>
+    </header>
+
+    <!-- New Static Content Section for SEO -->
+
+
+    <main>
+        <!-- Step 1: Upload Image -->
+        <section class="step-panel active" data-step="1">
+            <h2>Step 1: Upload Your Base Image</h2>
+            <div class="upload-area" id="uploadArea">
+                <p>📤 <strong>Click to Upload or Drag & Drop an Image</strong></p>
+                <span>Supports JPG, PNG formats. This will be your template.</span>
+            </div>
+            <input type="file" id="image-input" accept="image/*" class="hidden" aria-label="Image file input">
+            
+
+        </section>
+        </br>
+    <section class="intro">
+        <h2>What is the Image Customization Tool?</h2>
+        <p>This free online tool helps you <strong>add unique text to the same base image multiple times</strong>, automatically. Do you need to create personalized certificates with different names, event invitations, or marketing images with unique coupon codes? Instead of editing each image one-by-one, simply upload your template, provide a list of text (by typing or from an Excel file), and let our tool generate all the images for you. Download everything in a convenient ZIP file in seconds!</p>
+    </section>
+        <!-- Step 2: Adjust Text with Fabric.js Canvas -->
+        <section class="step-panel" data-step="2">
+            <h2>Step 2: Position and Style Your Text</h2>
+            <p>Click the text to select it. Then drag, resize, or use the controls below to style your placeholder text.</p>
+            <div class="editor-container">
+                <canvas id="editor-canvas"></canvas>
+            </div>
+            <div class="controls-grid">
+                <div class="control-group">
+                    <label for="font-size">Font Size</label>
+                    <input type="range" id="font-size" min="10" max="200" value="40" aria-label="Font size slider">
+                </div>
+                <div class="control-group">
+                    <label for="font-color">Font Color</label>
+                    <input type="color" id="font-color" value="#000000" aria-label="Font color picker">
+                </div>
+                <div class="control-group">
+                    <label for="font-family">Font Family</label>
+                    <select id="font-family" aria-label="Font family selection">
+                        <option>Arial</option>
+                        <option>Verdana</option>
+                        <option>Georgia</option>
+                        <option>Times New Roman</option>
+                        <option>Pacifico</option>
+                    </select>
+                </div>
+            </div>
+            <div class="navigation">
+                <button class="btn-secondary" onclick="navigateToStep(1)">← Previous</button>
+                <button class="btn-primary" onclick="navigateToStep(3)">Next Step →</button>
+            </div>
+        </section>
+
+        <!-- Step 3: Choose Input Method -->
+        <section class="step-panel" data-step="3">
+            <h2>Step 3: Choose Your Data Source</h2>
+            <p>How do you want to provide the list of text to add to the images?</p>
+            <div class="choice-container">
+                <div class="choice-box" id="select-manual">
+                    <h3>✍️ Manual Input</h3>
+                    <p>Type or paste your text directly, one item per line.</p>
+                </div>
+                <div class="choice-box" id="select-excel">
+                    <h3>📊 Upload Excel File</h3>
+                    <p>Use the first column of a .xlsx file for your data.</p>
+                </div>
+            </div>
+            <div class="navigation">
+                <button class="btn-secondary" onclick="navigateToStep(2)">← Previous</button>
+            </div>
+        </section>
+
+        <!-- Step 4: Input Data -->
+        <section class="step-panel" data-step="4">
+            <div id="manual-input-panel" class="hidden">
+                <h2>Step 4: Enter Data Manually</h2>
+                <textarea id="manual-data" rows="10" placeholder="Alice Smith\nBob Johnson\nCharlie Brown..." aria-label="Enter data manually, one item per line"></textarea>
+            </div>
+            <div id="excel-input-panel" class="hidden">
+                <h2>Step 4: Upload Your Excel File</h2>
+                <input type="file" id="excel-input" accept=".xlsx, .xls" aria-label="Excel file input">
+                <div id="excel-status" class="status-text"></div>
+            </div>
+            <div class="navigation">
+                <button class="btn-secondary" onclick="navigateToStep(3)">← Previous</button>
+                <button id="data-next-btn" class="btn-primary" disabled>Next Step →</button>
+            </div>
+        </section>
+
+        <!-- Step 5: Generate Images -->
+        <section class="step-panel" data-step="5">
+            <h2>Step 5: Generate & Download Your Images</h2>
+            <p>Ready to generate <strong id="image-count">0</strong> images. Click the button to start the batch process.</p>
+            <button id="generate-btn" class="btn-success">Generate All Images</button>
+            <div id="progress-container" class="hidden">
+                <div id="progress-bar"></div>
+                <span id="progress-text"></span>
+            </div>
+            <div id="results-container" class="hidden">
+                <h3>Generated Previews</h3>
+                <div id="image-results"></div>
+                <button id="download-zip-btn" class="btn-success">Download All as ZIP</button>
+            </div>
+            <div class="navigation">
+                <button class="btn-secondary" onclick="navigateToStep(4)">← Previous</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- New FAQ Section for SEO -->
+    <section class="faq">
+        <h2>Frequently Asked Questions (FAQ)</h2>
+        
+        <h3>How does this batch image editor work?</h3>
+        <p>Our tool uses Fabric.js to create a dynamic canvas. When you upload an image, it becomes the background. The text you add is an editable object on top. When you generate, the tool loops through your list of data, replacing the text for each item and exporting a new high-resolution image for each one before zipping them for download.</p>
+        
+        <h3>Is my data safe?</h3>
+        <p>Absolutely. All image processing and data handling happens directly in your browser. Your images and data from your Excel file are never uploaded to our servers, ensuring your privacy.</p>
+        
+        <h3>What are the best use cases for this tool?</h3>
+        <p>This tool is perfect for anyone needing to create multiple, similar images with slight variations. Common uses include: generating personalized certificates of completion, creating custom invitations with guest names, producing social media graphics with unique codes, or making personalized marketing materials.</p>
+    </section>
+
+    <footer>
+        <p>© 2025 Your Website Name. All Rights Reserved.</p>
+    </footer>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

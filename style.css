@@ -1,0 +1,183 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f4f7f9;
+    color: #333;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+header {
+    background: linear-gradient(135deg, #005bea, #00c6fb);
+    color: white;
+    padding: 25px 30px;
+    text-align: center;
+}
+
+h1 { margin-bottom: 5px; }
+
+main {
+    padding: 30px;
+}
+
+/* --- Step Panels --- */
+.step-panel {
+    display: none;
+}
+.step-panel.active {
+    display: block;
+    animation: fadeIn 0.5s ease-in-out;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+    color: #005bea;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+}
+
+/* Step 1: Upload */
+.upload-area {
+    border: 3px dashed #ccc;
+    border-radius: 10px;
+    padding: 50px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #fdfdfd;
+    transition: all 0.3s ease;
+}
+.upload-area:hover, .upload-area.dragover {
+    background-color: #e9f2ff;
+    border-color: #005bea;
+}
+
+/* Step 2: Editor */
+.editor-container {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    background-color: #f0f0f0;
+    /* This makes the canvas responsive */
+    width: 100%;
+    height: auto;
+}
+.canvas-container {
+    margin: 0 auto !important; /* Center Fabric.js canvas */
+}
+
+.controls-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+.control-group label { display: block; font-weight: bold; margin-bottom: 5px; }
+
+/* Step 3: Choice */
+.choice-container {
+    display: flex;
+    gap: 20px;
+}
+.choice-box {
+    flex: 1;
+    padding: 30px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.choice-box:hover {
+    border-color: #005bea;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,91,234,0.1);
+}
+
+/* Step 4 & 5 */
+#manual-data { width: 100%; font-family: monospace; }
+.status-text { margin-top: 10px; font-weight: bold; color: #28a745; }
+
+/* --- General Controls --- */
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.btn-primary { background-color: #005bea; color: white; }
+.btn-primary:hover { background-color: #004ecc; }
+.btn-primary:disabled { background-color: #a0a0a0; cursor: not-allowed; }
+.btn-secondary { background-color: #6c757d; color: white; }
+.btn-secondary:hover { background-color: #5a6268; }
+.btn-success { background-color: #28a745; color: white; width: 100%; margin-bottom: 20px; }
+.btn-success:hover { background-color: #218838; }
+
+#progress-container { width: 100%; background-color: #e0e0e0; border-radius: 5px; }
+#progress-bar { width: 0%; height: 10px; background-color: #28a745; border-radius: 5px; transition: width 0.3s ease; }
+#progress-text { text-align: center; display: block; margin-top: 5px; font-size: 0.9em; }
+
+#results-container { margin-top: 20px; }
+#image-results {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+#image-results img { width: 100%; border: 1px solid #ccc; border-radius: 5px; }
+
+.hidden { display: none !important; }
+
+@media (max-width: 600px) {
+    .choice-container { flex-direction: column; }
+}
+
+
+/* Add this to your existing style.css file */
+
+.intro, .faq {
+    padding: 0 30px 20px 30px;
+}
+.intro p, .faq p {
+    line-height: 1.6;
+    color: #555;
+}
+
+.faq h3 {
+    margin-top: 20px;
+    color: #333;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #f4f7f9;
+    font-size: 0.9em;
+    color: #6c757d;
+    border-top: 1px solid #e0e0e0;
+}
